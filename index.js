@@ -15,7 +15,7 @@ app.use(express.json());//Este va primero para que lea lo que me mandan
 })*/
 
 app.get("/", (req, res) => {
-    res.json("Servidor Corriendo");
+    res.json("message : Bienvenido a la API REST !!!");
 })
 
 app.use("/api", productsRouter);

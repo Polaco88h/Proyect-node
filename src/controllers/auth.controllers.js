@@ -16,7 +16,7 @@ export const login = (req, res) => {
         const expiration = { expiresIn : "1h"}
 
         const token = jwt.sign(payload, process.env.JWT_SECRET,expiration);
-
+        console.log(token)
         res.json({token});
     }
     else{

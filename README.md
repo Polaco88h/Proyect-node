@@ -20,8 +20,8 @@ Servidor desarrollado con **Node.js** y **Express**, conectado a **Firebase** (F
 1. Clonar el repositorio:
 
 ```bash
-git clone 
-cd proyecto_nodejs
+git clone https://github.com/Polaco88h/Proyect-node
+cd Proyect-node
 ```
 
 2. Instalar dependencias:
@@ -45,7 +45,7 @@ npm run dev
 ### 📍 Ruta base
 
 ```
-GET /api
+GET /
 ```
 **Respuesta:** Mensaje de bienvenida.
 
@@ -56,27 +56,98 @@ GET /api
 #### ✅ Obtener todos los productos
 
 ```
-GET /api/productos
+GET /api/products
+```
+```json
+
+  {
+        "id": "4TonmgE2bfHylqvK5cbZ",
+        "stock": 30,
+        "price": 25990,
+        "name": "Camiseta Argentina",
+        "categories": [
+            "Deporte",
+            "Ropa"
+        ],
+        "description": "Camiseta oficial selección argentina"
+    },
+    {
+        "id": "9D0yRR7QiJzSJsw2TSbu",
+        "stock": 25,
+        "categories": [
+            "Deporte",
+            "Fútbol"
+        ],
+        "description": "Pelota oficial de la Champions League",
+        "name": "Pelota de Fútbol Adidas",
+        "price": 14999
+    },
+    {
+        "id": "G2rfpsehfnAFTtaGRWU6",
+        "description": "Juego de pesas ajustables 20kg",
+        "price": 75990,
+        "categories": [
+            "Deporte",
+            "Fitness"
+        ],
+        "stock": 18,
+        "name": "Set de Pesas"
+    },
+    {
+        "id": "LtmUMoi1XCoKws7Ya2oj",
+        "stock": 22,
+        "description": "Mochila 40L impermeable con soporte agua",
+        "price": 45990,
+        "categories": [
+            "Deporte",
+            "Outdoor"
+        ],
+        "name": "Mochila Trekking"
+    },
+    {
+        "id": "cFcrHb6um8RBnpydIU0D",
+        "stock": 15,
+        "description": "Zapatillas running con amortiguación Air",
+        "price": 65990,
+        "categories": [
+            "Calzado",
+            "Deporte"
+        ],
+        "name": "Zapatillas Nike Air Max"
+    }
+
+
+
+
+
+```
+## ✅ Obtener productos por id
+
+GET /api/products/:id
+```
+```
+```json
+[
+    {
+        "id": "4TonmgE2bfHylqvK5cbZ",
+        "stock": 30,
+        "price": 25990,
+        "name": "Camiseta Argentina",
+        "categories": [
+            "Deporte",
+            "Ropa"
+        ],
+        "description": "Camiseta oficial selección argentina"
+    }
+]
 ```
 
-#### 🔎 Buscar producto por ID
+   
 
-```
-GET /api/productos/:id
-```
 
-#### 🔍 Buscar producto por campo
 
-```
-GET /api/productos/buscar?{campo}={valor}
-```
 
-**Ejemplos:**
 
-- `/api/productos/buscar?nombre=licuado de fresa`
-- `/api/productos/buscar?categoria=Tragos`
-
----
 
 #### ➕ Crear producto
 
@@ -88,11 +159,15 @@ POST /api/productos
 
 ```json
 {
-  "nombre": "Fernet con Coca",
-  "descripcion": "Fernet con coca cola",
-  "stock": 2,
-  "precio": 7,
-  "categoria": "Tragos"
+  "id": "4TonmgE2bfHylqvK5cbZ",
+        "stock": 30,
+        "price": 25990,
+        "name": "Camiseta Argentina",
+        "categories": [
+            "Deporte",
+            "Ropa"
+        ],
+        "description": "Camiseta oficial selección argentina"
 }
 ```
 
@@ -110,9 +185,14 @@ PUT /api/productos/:id
 
 ```json
 {
-  "nombre": "dfsdf",
-  "precio": 7,
-  "categoria": "Tragos"
+  	"name": "pelota",
+    "price": "700",
+    "categories":[
+        "deporte",
+        "futbol"
+    ],
+    "description":"Pelota de la seleccion",
+    "stock":20
 }
 ```
 
@@ -127,18 +207,18 @@ DELETE /api/productos/:id
 ```
 
 Elimina el producto con el ID especificado.
+#### resultado : 204 no content
 
 ---
 
 ## 👤 Autenticación
 
-### 🔍 Ver usuarios (uso interno)
+
 
 ```
 GET /autenticacion/usuarios
 ```
 
-Permite ver los usuarios almacenados en la base de datos (solo con fines de prueba).
 
 ---
 
@@ -148,32 +228,16 @@ Permite ver los usuarios almacenados en la base de datos (solo con fines de prue
 POST /autenticacion/login
 ```
 
-**Body (JSON):**
+###  jsonwebtoken 
+    
+   
+## 🌍 Versión en GitHub
 
-```json
-{
-  "usuario": "christian",
-  "passsword": "********"
-}
-```
-
-Devuelve un token JWT si las credenciales son válidas.
-
----
-
-## 🛡️ Control de Acceso
-
-| Usuario   | Contraseña | Rol   | Permisos                                                                 |
-|-----------|------------|--------|--------------------------------------------------------------------------|
-| christian | ********   | admin  | Crear, leer, buscar, editar y eliminar productos                         |
-| paul      | paul1234   | user   | Leer y buscar productos                                                  |
-| (sin login) | -        | público | Solo puede listar todos los productos (`GET /api/productos`)             |
-
----
+🔗 [https://github.com/Polaco88h/Proyect-node](https://github.com/Polaco88h/Proyect-node)
 
 ## 🌍 Versión en producción
 
-🔗 [https://proyecto-nodejs-tau.vercel.app](https://proyecto-nodejs-tau.vercel.app)
+🔗 [https://proyect-node-ashen.vercel.app/](https://proyect-node-ashen.vercel.app/)
 
 ---
 
@@ -185,13 +249,20 @@ src/
 │    ├── autenticacion.controlador.js
 │    └── productos.controlador.js
 │
-├── Modelos/
-│    ├── autenticacion.modelo.js
-│    └── prouctos.modelo.js
+├── Middlewares/
+│    ├── auth.middleware.js
+│    └── 
 │
-└── Routes/
-    ├── autenticacion.ruta.js
+└── Models/
+│    ├── data.js
+│    └── products.js
+│    └── products.model.js
+│    └── 
+│
+└── routes/
+    ├── auth.router.js
     └── products.router.js
+   
 
 ```
     
@@ -207,7 +278,7 @@ src/
 
 ---
 
-## ✍️ Autor
+## ✍️ Autor:  Romañuk Claudio
  
 📧  
 📍 Buenos Aires, Argentina
